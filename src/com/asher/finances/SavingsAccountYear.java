@@ -3,6 +3,7 @@ package com.asher.finances;
 public class SavingsAccountYear {
 
 	private int startingBalance = 0;
+	private int capitalGainsAmount = 0;
 	private int interestRate = 0;
 	
 	public SavingsAccountYear() {
@@ -12,8 +13,14 @@ public class SavingsAccountYear {
 		this.startingBalance = startingBalance;
 		this.interestRate = interestRate;
 	}
-
 	
+	public SavingsAccountYear(int startingBalance, int capitalGainsAmount, int interestRate) {
+		super();
+		this.startingBalance = startingBalance;
+		this.capitalGainsAmount = capitalGainsAmount;
+		this.interestRate = interestRate;
+	}
+
 	public int getStartingBalance() {
 		return startingBalance;
 	}
@@ -22,26 +29,18 @@ public class SavingsAccountYear {
 	public int getInterestRate() {
 		return interestRate;
 	}
-
-
-	public int getBalance() {
-		return startingBalance;
+	
+	public int getEndingBalance() {
+		return startingBalance + (startingBalance * interestRate / 100);
 	}
 	
-	public void deposit(int amount) {
-		startingBalance += amount;	
-	}
-
-	public void withdraw(int amount) {
-		startingBalance -= amount;
-	}
 	
 	public SavingsAccountYear nextYear() {
 		return new SavingsAccountYear(getEndingBalance(), interestRate);
 	}
 	
-	public int getEndingBalance() {
-		return getBalance() + (getBalance() * interestRate / 100);
+	public void withdraw(int amount) {
+		startingBalance -= amount;
 	}
-	
+
 }
