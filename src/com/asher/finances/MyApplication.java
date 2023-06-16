@@ -1,4 +1,4 @@
-package main;
+package com.asher.finances;
 
 public class MyApplication {
 

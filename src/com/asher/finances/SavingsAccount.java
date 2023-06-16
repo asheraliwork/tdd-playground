@@ -1,4 +1,4 @@
-package main;
+package com.asher.finances;
 
 public class SavingsAccount {
 
@@ -14,5 +14,12 @@ public class SavingsAccount {
 
 	public void withdraw(int amount) {
 		balance -= amount;
+	}
+	
+	public SavingsAccount nextYear(int interestRate) {
+		
+		SavingsAccount  account = new SavingsAccount();
+		account.deposit(balance + (balance * interestRate /100));
+		return account;
 	}
 }

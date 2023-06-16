@@ -1,4 +1,4 @@
-package main;
+package com.asher.finances;
 
 import static org.junit.Assert.*;
 
@@ -20,6 +20,15 @@ public class SavingsAccountTest {
 		SavingsAccount savingsAccount = new SavingsAccount();
 		savingsAccount.withdraw(25);
 		assertEquals(-25, savingsAccount.getBalance());
+	}
+	
+	@Test
+	public void nextyearTest() {
+		SavingsAccount account = new SavingsAccount();
+		account.deposit(10000);
+		SavingsAccount nextYearAccount = account.nextYear(10);
+		assertEquals(11000, nextYearAccount.getBalance());
+		
 	}
 
 }
