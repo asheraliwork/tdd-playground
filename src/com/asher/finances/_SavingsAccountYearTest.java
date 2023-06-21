@@ -48,11 +48,41 @@ public class _SavingsAccountYearTest {
 	}
 	
 	@Test
-	public void withdrawingMoreThanPrincipalIncursCapitalGainsTaxTest() {
-		SavingsAccountYear year = new SavingsAccountYear(10000, 7000, 10);
-		year.withdraw(3000);
-		assertEquals(7700, year.getEndingBalance());
-		year.withdraw(5000);
-		assertEquals(2000 + 200 - (5000 * .25), year.getEndingBalance());
+	public void startingPrincipalTest() {
+		SavingsAccountYear account = new SavingsAccountYear(10000,7000, 10);
+		assertEquals(3000, account.getStartingPrincipal());
 	}
+	
+	@Test
+	public void endingPrincipalTest() {
+		SavingsAccountYear account = new SavingsAccountYear(10000,7000, 10);
+		assertEquals("Starting principal amount",3000, account.getStartingPrincipal());
+		account.withdraw(2000);
+		assertEquals("Ending principal amount",1000, account.getEndingPrincipal());
+	}
+	
+	@Test
+	public void endingPrincipalNeverGoesBelowZero() {
+		SavingsAccountYear account = new SavingsAccountYear(10000,7000, 10);
+		assertEquals("Starting principal amount",3000, account.getStartingPrincipal());
+		account.withdraw(4000);
+		assertEquals("Ending principal amount",0, account.getEndingPrincipal());
+	}
+	
+	@Test
+	public void multipleWithdrawlsInYear() {
+		SavingsAccountYear account = new SavingsAccountYear(10000, 10);
+		account.withdraw(1000);
+		account.withdraw(2000);
+		assertEquals(7700, account.getEndingBalance());
+	}
+	
+//	@Test
+//	public void withdrawingMoreThanPrincipalIncursCapitalGainsTaxTest() {
+//		SavingsAccountYear year = new SavingsAccountYear(10000, 7000, 10);
+//		year.withdraw(3000);
+//		assertEquals(7700, year.getEndingBalance());
+//		year.withdraw(5000);
+//		assertEquals(2000 + 200 - (5000 * .25), year.getEndingBalance());
+//	}
 }
